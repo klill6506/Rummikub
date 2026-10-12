@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Rummikub · Purple Edition</title>
+  <meta name="description" content="Play Rummikub in your browser against purple-powered bots." />
+  <meta name="theme-color" content="#1b0b33" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <!-- Start screen -->
+  <section id="setup" class="screen setup">
+    <div class="setup-card">
+      <div class="logo-tiles" aria-hidden="true">
+        <span class="mini-tile c-red">R</span><span class="mini-tile c-blue">U</span><span class="mini-tile c-amber">M</span><span class="mini-tile c-black">M</span><span class="mini-tile c-red">I</span><span class="mini-tile c-blue">K</span><span class="mini-tile c-amber">U</span><span class="mini-tile c-black">B</span>
+      </div>
+      <h1 class="brand">Rummikub <span>Purple Edition</span></h1>
+
+      <form id="setup-form">
+        <label class="field">
+          <span>Your name</span>
+          <input id="player-name" type="text" maxlength="16" placeholder="Player" autocomplete="nickname" />
+        </label>
+
+        <fieldset class="field">
+          <legend>Opponents</legend>
+          <div class="seg" role="radiogroup">
+            <label><input type="radio" name="bots" value="1" /><span>1</span></label>
+            <label><input type="radio" name="bots" value="2" /><span>2</span></label>
+            <label><input type="radio" name="bots" value="3" checked /><span>3</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend>Bot difficulty</legend>
+          <div class="seg" role="radiogroup">
+            <label><input type="radio" name="difficulty" value="easy" /><span>Easy</span></label>
+            <label><input type="radio" name="difficulty" value="normal" checked /><span>Normal</span></label>
+            <label><input type="radio" name="difficulty" value="hard" /><span>Hard</span></label>
+          </div>
+        </fieldset>
+
+        <div class="setup-actions">
+          <button type="submit" class="btn btn-primary btn-lg">New game</button>
+          <button type="button" id="continue-btn" class="btn btn-ghost btn-lg" hidden>Continue game</button>
+        </div>
+        <button type="button" class="link-btn" data-open="rules">How to play</button>
+      </form>
+      <p id="stats-line" class="stats-line"></p>
+    </div>
+  </section>
+
+  <!-- Game screen -->
+  <section id="game" class="screen game" hidden>
+    <header class="topbar">
+      <div class="brand-sm">Rummikub</div>
+      <div id="opponents" class="opponents"></div>
+      <div class="top-actions">
+        <div class="pool" title="Tiles left in the pool">
+          <span class="pool-stack" aria-hidden="true"></span>
+          <span id="pool-count">0</span>
+        </div>
+        <button class="icon-btn" id="sound-btn" title="Toggle sound" aria-label="Toggle sound">🔊</button>
+        <button class="icon-btn" data-open="rules" title="How to play" aria-label="How to play">?</button>
+        <button class="icon-btn" id="menu-btn" title="Menu" aria-label="Menu">☰</button>
+      </div>
+    </header>
+
+    <div class="board-wrap">
+      <main id="board" class="board" data-drop="board">
+        <div id="sets" class="sets"></div>
+        <p id="board-empty" class="board-empty">The table is empty. Drag tiles here to start a set!</p>
+      </main>
+      <div id="log" class="log" aria-live="polite"></div>
+    </div>
+
+    <footer class="player-area">
+      <div class="status-row">
+        <div id="turn-pill" class="turn-pill"></div>
+        <div id="status" class="status"></div>
+      </div>
+      <div class="controls">
+        <div class="ctrl-group">
+          <button class="btn btn-ghost" id="undo-btn" title="Undo last move">↶ Undo</button>
+          <button class="btn btn-ghost" id="reset-btn" title="Put everything back">Reset</button>
+          <button class="btn btn-ghost" id="hint-btn" title="Show tiles you could play">💡 Hint</button>
+        </div>
+        <div class="ctrl-group">
+          <button class="btn btn-ghost" id="sort-color-btn" title="Sort by color">Sort 🎨</button>
+          <button class="btn btn-ghost" id="sort-num-btn" title="Sort by number">Sort 123</button>
+        </div>
+        <div class="ctrl-group">
+          <button class="btn btn-secondary" id="draw-btn">Draw tile</button>
+          <button class="btn btn-primary" id="end-btn">End turn</button>
+        </div>
+      </div>
+      <div id="rack" class="rack" data-drop="hand"></div>
+    </footer>
+  </section>
+
+  <!-- Rules modal -->
+  <dialog id="rules" class="modal">
+    <form method="dialog" class="modal-body">
+      <h2>How to play</h2>
+      <p>Be the first to play every tile from your rack.</p>
+      <h3>Sets</h3>
+      <ul>
+        <li><b>Run</b> — 3+ consecutive numbers in the same color, like
+          <span class="inline-tiles"><i class="c-blue">4</i><i class="c-blue">5</i><i class="c-blue">6</i></span></li>
+        <li><b>Group</b> — 3 or 4 of the same number in different colors, like
+          <span class="inline-tiles"><i class="c-red">9</i><i class="c-amber">9</i><i class="c-black">9</i></span></li>
+        <li><b>Jokers</b> <span class="inline-tiles"><i class="joker">☺</i></span> stand in for any tile.</li>
+      </ul>
+      <h3>Your turn</h3>
+      <ul>
+        <li>Your first play (the <b>initial meld</b>) must be worth <b>30+ points</b> using only your own tiles.</li>
+        <li>After that you can add to and rearrange any sets on the table — as long as every set is valid when you end your turn.</li>
+        <li>Can’t (or don’t want to) play? <b>Draw a tile</b> and your turn ends.</li>
+      </ul>
+      <h3>Controls</h3>
+      <ul>
+        <li><b>Drag</b> tiles onto a set, onto the empty table to start a new set, or back to your rack (only tiles you played this turn).</li>
+        <li><b>Tap</b> tiles to select several, then tap a set, the <b>+ New set</b> spot, or your rack to move them all.</li>
+        <li><b>Undo</b> steps back one move. <b>Reset</b> undoes your whole turn.</li>
+      </ul>
+      <h3>Scoring</h3>
+      <p>When someone goes out, everyone else loses the value of their remaining tiles (jokers are worth 30) and the winner collects the total.</p>
+      <button class="btn btn-primary" value="close">Let’s play</button>
+    </form>
+  </dialog>
+
+  <!-- Game over modal -->
+  <dialog id="gameover" class="modal">
+    <form method="dialog" class="modal-body center">
+      <div id="go-emoji" class="go-emoji">🏆</div>
+      <h2 id="go-title">You win!</h2>
+      <table class="scores">
+        <thead><tr><th>Player</th><th>Tiles left</th><th>Score</th></tr></thead>
+        <tbody id="go-scores"></tbody>
+      </table>
+      <div class="setup-actions">
+        <button class="btn btn-primary" value="again" id="again-btn">Play again</button>
+        <button class="btn btn-ghost" value="menu" id="go-menu-btn">Menu</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Confirm modal -->
+  <dialog id="confirm" class="modal">
+    <form method="dialog" class="modal-body center">
+      <h2>Back to the menu?</h2>
+      <p>Your game is saved and you can continue later — moves made this turn will be undone.</p>
+      <div class="setup-actions">
+        <button class="btn btn-primary" value="yes">Go to menu</button>
+        <button class="btn btn-ghost" value="no">Keep playing</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="assertive"></div>
+  <canvas id="confetti" class="confetti" aria-hidden="true"></canvas>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

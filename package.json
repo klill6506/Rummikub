@@ -1,0 +1,11 @@
+{
+  "name": "rummikub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Rummikub in the browser — purple edition",
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "test": "node --test tests/*.test.js"
+  }
+}
