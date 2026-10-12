@@ -15,7 +15,7 @@ function seeded(seed) {
 }
 
 test('finds runs and groups in a rack', () => {
-  const hand = [t('red', 3), t('red', 4), t('red', 5), t('blue', 9), t('amber', 9), t('black', 9), t('blue', 1)];
+  const hand = [t('red', 3), t('red', 4), t('red', 5), t('blue', 9), t('green', 9), t('black', 9), t('blue', 1)];
   const { sets } = findBestMelds(hand);
   assert.equal(sets.flat().length, 6);
   assert.ok(sets.every(isValidSet));

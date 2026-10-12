@@ -28,12 +28,12 @@ test('invalid runs', () => {
 });
 
 test('groups', () => {
-  const g = analyzeSet([t('red', 7), t('blue', 7), t('amber', 7)]);
+  const g = analyzeSet([t('red', 7), t('blue', 7), t('green', 7)]);
   assert.equal(g.type, 'group');
   assert.equal(g.value, 21);
-  assert.ok(analyzeSet([t('red', 7), t('blue', 7), t('amber', 7), t('black', 7)]).valid);
-  assert.ok(!analyzeSet([t('red', 7), t('red', 7), t('amber', 7)]).valid, 'duplicate color');
-  assert.ok(!analyzeSet([t('red', 7), t('blue', 7), t('amber', 7), t('black', 7), J()]).valid, 'max 4');
+  assert.ok(analyzeSet([t('red', 7), t('blue', 7), t('green', 7), t('black', 7)]).valid);
+  assert.ok(!analyzeSet([t('red', 7), t('red', 7), t('green', 7)]).valid, 'duplicate color');
+  assert.ok(!analyzeSet([t('red', 7), t('blue', 7), t('green', 7), t('black', 7), J()]).valid, 'max 4');
 });
 
 test('jokers fill gaps and extend runs upward', () => {
@@ -68,7 +68,7 @@ test('initial meld must reach 30 points', () => {
   assert.equal(r.ok, false);
   assert.match(r.error, /30/);
 
-  const high = [t('red', 10), t('blue', 10), t('amber', 10)];
+  const high = [t('red', 10), t('blue', 10), t('green', 10)];
   r = validateTurn({ startBoard: [], board: [high], playedIds: high.map((x) => x.id), hasMelded: false });
   assert.equal(r.ok, true);
   assert.equal(r.meldValue, 30);
@@ -77,7 +77,7 @@ test('initial meld must reach 30 points', () => {
 test('initial meld cannot touch existing sets', () => {
   const existing = [t('red', 1), t('red', 2), t('red', 3)];
   const mine = t('red', 4);
-  const meld = [t('blue', 10), t('amber', 10), t('black', 10)];
+  const meld = [t('blue', 10), t('green', 10), t('black', 10)];
   const r = validateTurn({
     startBoard: [existing],
     board: [[...existing, mine], meld],
@@ -89,7 +89,7 @@ test('initial meld cannot touch existing sets', () => {
 
 test('after melding you can rearrange the table', () => {
   const a = [t('red', 1), t('red', 2), t('red', 3), t('red', 4)];
-  const b = [t('blue', 4), t('amber', 4)];
+  const b = [t('blue', 4), t('green', 4)];
   const mine = t('black', 4);
   const r = validateTurn({
     startBoard: [a],
@@ -104,14 +104,14 @@ test('after melding you can rearrange the table', () => {
 test('turn fails with an invalid set or no tiles played', () => {
   const a = [t('red', 1), t('red', 2), t('red', 3)];
   assert.equal(validateTurn({ startBoard: [a], board: [a], playedIds: [], hasMelded: true }).ok, false);
-  const bad = [t('blue', 4), t('amber', 9)];
+  const bad = [t('blue', 4), t('green', 9)];
   const r = validateTurn({ startBoard: [a], board: [a, bad], playedIds: bad.map((x) => x.id), hasMelded: true });
   assert.equal(r.ok, false);
 });
 
 test('table tiles cannot go back to a rack', () => {
   const a = [t('red', 1), t('red', 2), t('red', 3), t('red', 4)];
-  const mine = [t('blue', 7), t('amber', 7), t('black', 7)];
+  const mine = [t('blue', 7), t('green', 7), t('black', 7)];
   const r = validateTurn({
     startBoard: [a],
     board: [a.slice(0, 3), mine],

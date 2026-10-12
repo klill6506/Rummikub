@@ -1,7 +1,7 @@
 // Core Rummikub rules: tiles, set validation, scoring and turn validation.
 // Pure functions only — no DOM — so both the UI and the bots (and tests) share them.
 
-export const COLORS = ['red', 'blue', 'amber', 'black'];
+export const COLORS = ['red', 'blue', 'green', 'black'];
 export const MIN_NUM = 1;
 export const MAX_NUM = 13;
 export const HAND_SIZE = 14;

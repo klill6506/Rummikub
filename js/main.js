@@ -113,7 +113,7 @@ function canMove(id) {
 }
 
 function tileName(t) {
-  return t.joker ? 'a Joker' : `${t.color === 'amber' ? 'an orange' : 'a ' + t.color} ${t.num}`;
+  return t.joker ? 'a Joker' : `a ${t.color} ${t.num}`;
 }
 
 // ---------------------------------------------------------------- game flow
@@ -511,23 +511,24 @@ function render() {
 
 function renderOpponents() {
   el.opponents.innerHTML = '';
-  game.players.forEach((p, i) => {
-    if (p.isHuman) return;
+  // You first, then the bots in turn order.
+  const order = game.players.map((p, i) => ({ p, i })).sort((a, b) => b.p.isHuman - a.p.isHuman);
+  for (const { p, i } of order) {
     const active = i === game.current && !game.over;
     const d = document.createElement('div');
-    d.className = `opp${active ? ' active' : ''}`;
+    d.className = `opp${p.isHuman ? ' me' : ''}${active ? ' active' : ''}`;
     d.innerHTML = `
       <div class="avatar">${p.avatar}</div>
       <div class="opp-info">
         <div class="opp-name">${escapeHtml(p.name)}</div>
         <div class="opp-meta">
-          <span>${p.hand.length} tiles</span>
+          <span class="count">${p.hand.length}<span class="unit"> tiles</span></span>
           ${p.hasMelded ? '<span class="badge-meld" title="Has made initial meld">✓</span>' : ''}
-          ${active ? '<span class="thinking"><i></i><i></i><i></i></span>' : ''}
+          ${active && !p.isHuman ? '<span class="thinking"><i></i><i></i><i></i></span>' : ''}
         </div>
       </div>`;
     el.opponents.append(d);
-  });
+  }
 }
 
 function renderBoard() {
