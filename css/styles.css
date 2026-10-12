@@ -262,6 +262,9 @@ button { font: inherit; color: inherit; }
   box-shadow: 0 0 0 2px var(--accent), 0 0 24px -4px var(--accent-glow);
   transform: translateY(1px) scale(1.03);
 }
+.opp.me { border-color: rgba(255, 209, 102, 0.45); }
+.opp.me .avatar { background: linear-gradient(135deg, #ffe08a, #f59e0b); }
+.opp.me.active { box-shadow: 0 0 0 2px var(--gold), 0 0 24px -4px rgba(255, 209, 102, 0.6); background: rgba(255, 209, 102, 0.14); }
 .avatar {
   width: 34px; height: 34px; border-radius: 50%;
   display: grid; place-items: center; font-size: 18px;
@@ -453,12 +456,19 @@ button { font: inherit; color: inherit; }
 .rack.inactive { filter: saturate(0.75) brightness(0.9); }
 
 @media (max-width: 760px) {
-  .brand-sm { display: none; }
-  .topbar { padding: 8px; gap: 6px; }
-  .opponents { justify-content: flex-start; }
+  .brand-sm { font-size: 19px; }
+  .topbar { padding: 8px; gap: 6px; flex-wrap: wrap; justify-content: space-between; }
+  .opponents { order: 2; flex-basis: 100%; justify-content: safe center; }
+  .opp .unit { display: none; }
+  .opp .count::before {
+    content: ''; display: inline-block; width: 7px; height: 10px; margin-right: 4px; border-radius: 2px;
+    background: var(--tile-face); vertical-align: -1px;
+  }
   .opp { padding: 3px 9px 3px 3px; gap: 6px; }
   .avatar { width: 28px; height: 28px; font-size: 15px; }
   .opp-name { display: none; }
+  .opp.me .opp-name { display: block; }
+  .opponents { gap: 5px; }
   .opp-meta { font-size: 11px; }
   .icon-btn { width: 32px; height: 32px; font-size: 14px; }
   .pool { padding: 4px 9px 4px 6px; font-size: 13px; }
