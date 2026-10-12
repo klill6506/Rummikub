@@ -113,7 +113,7 @@ function canMove(id) {
 }
 
 function tileName(t) {
-  return t.joker ? 'a Joker' : `${t.color === 'amber' ? 'an orange' : 'a ' + t.color} ${t.num}`;
+  return t.joker ? 'a Joker' : `a ${t.color} ${t.num}`;
 }
 
 // ---------------------------------------------------------------- game flow

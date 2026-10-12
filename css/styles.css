@@ -20,7 +20,7 @@
   --tile-edge: #d3c2ab;
   --c-red: #e11d48;
   --c-blue: #2563eb;
-  --c-amber: #ea7a00;
+  --c-green: #13923f;
   --c-black: #1d1030;
 
   --tile-w: 46px;
@@ -377,14 +377,14 @@ button { font: inherit; color: inherit; }
 }
 .tile.c-red, .c-red { color: var(--c-red); }
 .tile.c-blue, .c-blue { color: var(--c-blue); }
-.tile.c-amber, .c-amber { color: var(--c-amber); }
+.tile.c-green, .c-green { color: var(--c-green); }
 .tile.c-black, .c-black { color: var(--c-black); }
 .tile.joker {
   font-size: calc(var(--tile-font) * 1.05);
   background: linear-gradient(160deg, #fff 0%, #f3e8ff 100%);
 }
 .tile.joker .face {
-  background: conic-gradient(from 0deg, #e11d48, #ea7a00, #a855f7, #2563eb, #e11d48);
+  background: conic-gradient(from 0deg, #e11d48, #13923f, #a855f7, #2563eb, #e11d48);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .tile.joker::after { display: none; }
