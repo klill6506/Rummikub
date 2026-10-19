@@ -13,6 +13,8 @@ No build step and no dependencies — it's plain HTML, CSS and JavaScript module
 - Bots that search for the best melds; Normal bots lay off onto the table, Hard bots also borrow spare tiles and split runs
 - Game auto-saves each turn so you can continue later, plus a win counter
 - Synth sound effects (mutable) and confetti when you win
+- Play against three original characters — Marco, Lou and Dino — in a sunny platformer-style world
+  (sky, hills, pipes, ? blocks and a brick-block rack); all artwork is original SVG in `img/`
 
 ## Run locally
 

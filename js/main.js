@@ -13,10 +13,13 @@ import { planTurn, findBestMelds } from './ai.js';
 import { sfx, setMuted, isMuted } from './sound.js';
 import { confetti } from './confetti.js';
 
+// Original lookalike characters: a red-capped plumber, his taller brother in
+// green, and their dinosaur buddy. `face` is the drawn avatar, `avatar` the
+// emoji used in plain-text messages.
 const BOT_PROFILES = [
-  { name: 'Violet', avatar: '🔮' },
-  { name: 'Plum', avatar: '🦄' },
-  { name: 'Amethyst', avatar: '🐙' },
+  { name: 'Marco', avatar: '🍄', face: 'img/avatars/red-plumber.svg' },
+  { name: 'Lou', avatar: '⭐', face: 'img/avatars/green-plumber.svg' },
+  { name: 'Dino', avatar: '🦖', face: 'img/avatars/green-dino.svg' },
 ];
 const SAVE_KEY = 'rummikub.save.v1';
 const STATS_KEY = 'rummikub.stats.v1';
@@ -406,12 +409,12 @@ function finish(winner) {
   store.set(STATS_KEY, stats);
 
   render();
-  $('#go-emoji').textContent = winner.isHuman ? '🏆' : winner.avatar;
+  $('#go-emoji').innerHTML = winner.isHuman ? '🏆' : avatarHtml(winner, 'big');
   $('#go-title').textContent = winner.isHuman ? 'You win!' : `${winner.name} wins!`;
   $('#go-scores').innerHTML = rows
     .map(
       (r) => `<tr class="${r.p === winner ? 'winner' : ''}">
-        <td>${r.p.avatar} ${escapeHtml(r.p.name)}</td>
+        <td>${avatarHtml(r.p, 'mini')} ${escapeHtml(r.p.name)}</td>
         <td>${r.left}</td>
         <td class="${r.score >= 0 ? 'pos' : 'neg'}">${r.score > 0 ? '+' : ''}${r.score}</td>
       </tr>`,
@@ -518,7 +521,7 @@ function renderOpponents() {
     const d = document.createElement('div');
     d.className = `opp${p.isHuman ? ' me' : ''}${active ? ' active' : ''}`;
     d.innerHTML = `
-      <div class="avatar">${p.avatar}</div>
+      <div class="avatar${p.face ? ' has-face' : ''}">${avatarHtml(p)}</div>
       <div class="opp-info">
         <div class="opp-name">${escapeHtml(p.name)}</div>
         <div class="opp-meta">
@@ -571,7 +574,11 @@ function renderStatus() {
   const me = human();
   const p = current();
   el.turnPill.className = `turn-pill${yours ? ' yours' : ''}`;
-  el.turnPill.textContent = game.over ? 'Game over' : yours ? 'Your turn' : `${p.avatar} ${p.name}’s turn`;
+  el.turnPill.innerHTML = game.over
+    ? 'Game over'
+    : yours
+      ? 'Your turn'
+      : `${avatarHtml(p, 'mini')} ${escapeHtml(p.name)}’s turn`;
 
   let status = '';
   let ready = false;
@@ -621,6 +628,11 @@ function toast(text, kind = '') {
   el.toast.className = `toast show ${kind}`;
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => (el.toast.className = 'toast'), 2800);
+}
+
+// Drawn face for the bots (saved games from before they existed fall back to the emoji).
+function avatarHtml(p, size = '') {
+  return p.face ? `<img class="face ${size}" src="${p.face}" alt="">` : escapeHtml(p.avatar);
 }
 
 function escapeHtml(s) {
