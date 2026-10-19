@@ -16,6 +16,8 @@ import { confetti } from './confetti.js';
 // Original lookalike characters: a red-capped plumber, his taller brother in
 // green, and their dinosaur buddy. `face` is the drawn avatar, `avatar` the
 // emoji used in plain-text messages.
+// You play as a golden-haired princess.
+const HUMAN_LOOK = { avatar: '👑', face: 'img/avatars/princess.svg' };
 const BOT_PROFILES = [
   { name: 'Marco', avatar: '🍄', face: 'img/avatars/red-plumber.svg' },
   { name: 'Lou', avatar: '⭐', face: 'img/avatars/green-plumber.svg' },
@@ -125,7 +127,7 @@ function newGame({ name, bots, difficulty }) {
   clearTimeout(botTimer);
   const pool = shuffle(TILES);
   const players = [
-    { name: name || 'You', avatar: '😎', isHuman: true, hand: [], hasMelded: false },
+    { name: name || 'You', ...HUMAN_LOOK, isHuman: true, hand: [], hasMelded: false },
     ...BOT_PROFILES.slice(0, bots).map((b) => ({ ...b, isHuman: false, hand: [], hasMelded: false })),
   ];
   for (let i = 0; i < HAND_SIZE; i++) {
@@ -454,7 +456,7 @@ function load() {
   try {
     const toTiles = (ids) => ids.map((id) => TILES[id]);
     return {
-      players: data.players.map((p) => ({ ...p, hand: toTiles(p.hand) })),
+      players: data.players.map((p) => ({ ...p, ...(p.isHuman ? HUMAN_LOOK : {}), hand: toTiles(p.hand) })),
       pool: toTiles(data.pool),
       board: data.board.map((ids) => makeSet(toTiles(ids))),
       current: data.current,
