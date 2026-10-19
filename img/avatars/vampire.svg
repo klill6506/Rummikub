@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs><clipPath id="c"><circle cx="50" cy="50" r="50"/></clipPath></defs>
+  <g clip-path="url(#c)">
+    <rect width="100" height="100" fill="#ffd56b"/>
+    <circle cx="22" cy="24" r="12" fill="#ffe7a3"/>
+    <!-- cape + high collar -->
+    <path d="M8 100 Q14 78 50 76 Q86 78 92 100 Z" fill="#1a1024"/>
+    <path d="M22 100 L30 70 L44 82 L50 100 Z M78 100 L70 70 L56 82 L50 100 Z" fill="#c0182f"/>
+    <path d="M18 84 L28 58 L42 78 Z M82 84 L72 58 L58 78 Z" fill="#1a1024"/>
+    <path d="M44 82 L50 92 L56 82 Z" fill="#fff"/>
+    <!-- neck + face -->
+    <rect x="44" y="66" width="12" height="14" rx="5" fill="#d9d2ec"/>
+    <ellipse cx="50" cy="52" rx="20" ry="23" fill="#e8e2f6"/>
+    <!-- ears -->
+    <path d="M30 50 L22 42 L30 60 Z M70 50 L78 42 L70 60 Z" fill="#d9d2ec"/>
+    <!-- slick hair with widow's peak -->
+    <path d="M29 48 Q28 24 50 24 Q72 24 71 48 Q66 36 58 34 L50 44 L42 34 Q34 36 29 48 Z" fill="#141018"/>
+    <path d="M44 30 Q50 27 56 30" stroke="#4a3d5c" stroke-width="1.5" fill="none"/>
+    <!-- brows + eyes -->
+    <path d="M36 46 L46 49 M64 46 L54 49" stroke="#141018" stroke-width="2.4" stroke-linecap="round"/>
+    <ellipse cx="41.5" cy="54" rx="4" ry="4.4" fill="#fff"/><ellipse cx="58.5" cy="54" rx="4" ry="4.4" fill="#fff"/>
+    <circle cx="42" cy="54.6" r="2.4" fill="#9b1b30"/><circle cx="58" cy="54.6" r="2.4" fill="#9b1b30"/>
+    <circle cx="42.8" cy="53.6" r=".9" fill="#fff"/><circle cx="58.8" cy="53.6" r=".9" fill="#fff"/>
+    <!-- nose + grin with fangs -->
+    <path d="M49 60 Q50 63 51 60" stroke="#b9aed4" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    <path d="M40 66 Q50 74 60 66 Q50 69 40 66 Z" fill="#7a1022"/>
+    <path d="M43.5 67.4 L45 72 L46.5 68 Z M56.5 67.4 L55 72 L53.5 68 Z" fill="#fff"/>
+  </g>
+</svg>

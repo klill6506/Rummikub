@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs><clipPath id="c"><circle cx="50" cy="50" r="50"/></clipPath></defs>
+  <g clip-path="url(#c)">
+    <rect width="100" height="100" fill="#ff9f43"/>
+    <circle cx="82" cy="20" r="2" fill="#fff4d6"/><circle cx="14" cy="28" r="1.5" fill="#fff4d6"/>
+    <!-- hair behind -->
+    <path d="M24 46 Q16 76 22 100 L78 100 Q84 76 76 46 Z" fill="#7a3b22"/>
+    <!-- dress + collar -->
+    <path d="M22 100 Q26 84 50 82 Q74 84 78 100 Z" fill="#5b2a86"/>
+    <path d="M38 84 L50 94 L62 84 Q50 88 38 84 Z" fill="#2b1446"/>
+    <!-- neck + face -->
+    <rect x="44" y="70" width="12" height="14" rx="5" fill="#ffd0ad"/>
+    <ellipse cx="50" cy="58" rx="20" ry="21" fill="#ffdcbf"/>
+    <!-- bangs -->
+    <path d="M30 52 Q32 40 50 40 Q68 40 70 52 Q62 45 54 46 Q50 50 44 46 Q36 46 30 52 Z" fill="#8f4a2b"/>
+    <!-- hat -->
+    <path d="M30 42 L50 6 Q60 2 72 12 Q62 12 60 20 L70 42 Z" fill="#6d2fa8"/>
+    <path d="M52 8 Q60 4 70 12" stroke="#8b4fd0" stroke-width="2" fill="none"/>
+    <rect x="31" y="34" width="38" height="7" fill="#ff7a18"/>
+    <rect x="46" y="33" width="8" height="9" rx="1.5" fill="none" stroke="#ffd34d" stroke-width="2"/>
+    <ellipse cx="50" cy="43" rx="34" ry="6" fill="#4f1f80"/>
+    <path d="M58 22 l1.4 2.9 3.2.5 -2.3 2.2 .5 3.2 -2.8-1.5 -2.8 1.5 .5-3.2 -2.3-2.2 3.2-.5 Z" fill="#ffd34d"/>
+    <!-- eyes -->
+    <ellipse cx="42" cy="58" rx="4" ry="5" fill="#fff"/><ellipse cx="58" cy="58" rx="4" ry="5" fill="#fff"/>
+    <ellipse cx="42.5" cy="59" rx="2.7" ry="3.6" fill="#3a9d4a"/><ellipse cx="57.5" cy="59" rx="2.7" ry="3.6" fill="#3a9d4a"/>
+    <circle cx="42.5" cy="59.4" r="1.4" fill="#123"/><circle cx="57.5" cy="59.4" r="1.4" fill="#123"/>
+    <circle cx="43.5" cy="57.8" r="1" fill="#fff"/><circle cx="58.5" cy="57.8" r="1" fill="#fff"/>
+    <path d="M37.5 54.5 Q42 51.5 46.5 54.5 M37.8 54.6 L36 52.8 M53.5 54.5 Q58 51.5 62.5 54.5 M62.2 54.6 L64 52.8" stroke="#4a2414" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <!-- cheeks, nose, smile -->
+    <ellipse cx="36" cy="66" rx="4" ry="2.4" fill="#ff8fa3" opacity=".75"/><ellipse cx="64" cy="66" rx="4" ry="2.4" fill="#ff8fa3" opacity=".75"/>
+    <path d="M49 65 Q50 67 51 65" stroke="#e8a080" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    <path d="M43 70 Q50 77 57 70 Q50 72.5 43 70 Z" fill="#c2185b"/>
+  </g>
+</svg>

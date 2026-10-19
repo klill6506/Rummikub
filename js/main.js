@@ -12,16 +12,15 @@ import {
 import { planTurn, findBestMelds } from './ai.js';
 import { sfx, setMuted, isMuted } from './sound.js';
 import { confetti } from './confetti.js';
+import { startMusic, stopMusic } from './music.js';
 
-// Original lookalike characters: a red-capped plumber, his taller brother in
-// green, and their dinosaur buddy. `face` is the drawn avatar, `avatar` the
-// emoji used in plain-text messages.
-// You play as a golden-haired princess.
-const HUMAN_LOOK = { avatar: '👑', face: 'img/avatars/princess.svg' };
+// Spooky cast. `face` is the drawn avatar, `avatar` the emoji used in
+// plain-text messages. You play as a friendly witch.
+const HUMAN_LOOK = { avatar: '🧙‍♀️', face: 'img/avatars/witch.svg' };
 const BOT_PROFILES = [
-  { name: 'Marco', avatar: '🍄', face: 'img/avatars/red-plumber.svg' },
-  { name: 'Lou', avatar: '⭐', face: 'img/avatars/green-plumber.svg' },
-  { name: 'Dino', avatar: '🦖', face: 'img/avatars/green-dino.svg' },
+  { name: 'Boo', avatar: '👻', face: 'img/avatars/ghost.svg' },
+  { name: 'Jack', avatar: '🎃', face: 'img/avatars/pumpkin.svg' },
+  { name: 'Vlad', avatar: '🧛', face: 'img/avatars/vampire.svg' },
 ];
 const SAVE_KEY = 'rummikub.save.v1';
 const STATS_KEY = 'rummikub.stats.v1';
@@ -78,6 +77,8 @@ const el = {
   draw: $('#draw-btn'),
   end: $('#end-btn'),
   soundBtn: $('#sound-btn'),
+  musicBtn: $('#music-btn'),
+  musicToggle: $('#music-toggle'),
   menuBtn: $('#menu-btn'),
   rules: $('#rules'),
   gameover: $('#gameover'),
@@ -455,8 +456,9 @@ function load() {
   if (!data || data.v !== 1) return null;
   try {
     const toTiles = (ids) => ids.map((id) => TILES[id]);
+    let bot = 0;
     return {
-      players: data.players.map((p) => ({ ...p, ...(p.isHuman ? HUMAN_LOOK : {}), hand: toTiles(p.hand) })),
+      players: data.players.map((p) => ({ ...p, ...(p.isHuman ? HUMAN_LOOK : BOT_PROFILES[bot++]), hand: toTiles(p.hand) })),
       pool: toTiles(data.pool),
       board: data.board.map((ids) => makeSet(toTiles(ids))),
       current: data.current,
@@ -846,23 +848,38 @@ el.soundBtn.addEventListener('click', () => {
 
 function updateSoundBtn() {
   el.soundBtn.textContent = isMuted() ? '🔇' : '🔊';
+  el.musicBtn.classList.toggle('off', !el.musicToggle.checked);
 }
+
+el.musicBtn.addEventListener('click', () => {
+  el.musicToggle.checked = !el.musicToggle.checked;
+  if (el.musicToggle.checked) startMusic();
+  else stopMusic();
+  savePrefs();
+  updateSoundBtn();
+});
+el.musicToggle.addEventListener('change', () => {
+  savePrefs();
+  updateSoundBtn();
+});
 
 // ---------------------------------------------------------------- screens
 
 function showGame() {
   el.setup.hidden = true;
   el.game.hidden = false;
+  if (el.musicToggle.checked) startMusic();
 }
 
 function showSetup() {
   clearTimeout(botTimer);
+  stopMusic();
   el.game.hidden = true;
   el.setup.hidden = false;
   el.continueBtn.hidden = !store.get(SAVE_KEY);
   const stats = store.get(STATS_KEY);
   el.statsLine.textContent = stats?.played
-    ? `You’ve won ${stats.won} of ${stats.played} game${stats.played === 1 ? '' : 's'} 💜`
+    ? `You’ve won ${stats.won} of ${stats.played} game${stats.played === 1 ? '' : 's'} 🎃`
     : '';
 }
 
@@ -873,6 +890,7 @@ function savePrefs() {
     bots: form.get('bots'),
     difficulty: form.get('difficulty'),
     muted: isMuted(),
+    music: el.musicToggle.checked,
   });
 }
 
@@ -885,6 +903,7 @@ function loadPrefs() {
     if (input) input.checked = true;
   }
   setMuted(!!prefs.muted);
+  if (prefs.music === false) el.musicToggle.checked = false;
 }
 
 el.setupForm.addEventListener('submit', (e) => {

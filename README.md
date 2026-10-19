@@ -1,6 +1,6 @@
-# 💜 Rummikub — Purple Edition
+# 🎃 Rummikub — Spooky Edition
 
-A browser version of the classic tile game, with a purple glow-up. Play against 1–3 bots
+A browser version of the classic tile game, dressed up for Halloween. Play against 1–3 bots
 at three difficulty levels. Live at **[rummikub.kenlill.com](https://rummikub.kenlill.com)**.
 
 No build step and no dependencies — it's plain HTML, CSS and JavaScript modules.
@@ -13,8 +13,9 @@ No build step and no dependencies — it's plain HTML, CSS and JavaScript module
 - Bots that search for the best melds; Normal bots lay off onto the table, Hard bots also borrow spare tiles and split runs
 - Game auto-saves each turn so you can continue later, plus a win counter
 - Synth sound effects (mutable) and confetti when you win
-- Play as a golden-haired princess against three original characters — Marco, Lou and Dino — in a sunny platformer-style world
-  (sky, hills, pipes, ? blocks and a brick-block rack); all artwork is original SVG in `img/`
+- Play as a friendly witch against Boo the ghost, Jack the jack-o'-lantern and Vlad the vampire, under a full moon
+  with bats, a dangling spider, drifting fog and a haunted house; all artwork is original SVG in `img/`
+- Gentle spooky background music, synthesized live in the browser (`js/music.js`), with its own on/off switch
 
 ## Run locally
 
@@ -34,7 +35,7 @@ Any static file server works — ES modules just need to be served over http, no
 | `js/rules.js` | Tiles, set validation, scoring, turn validation (pure, tested) |
 | `js/ai.js` | Bot move search |
 | `js/main.js` | Game flow, rendering, drag & drop |
-| `js/sound.js`, `js/confetti.js` | Effects |
+| `js/sound.js`, `js/music.js`, `js/confetti.js` | Sound effects, background music, confetti |
 
 ## Deploying to rummikub.kenlill.com
 

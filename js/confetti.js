@@ -1,6 +1,6 @@
-// A quick purple-and-gold confetti burst on a full-screen canvas.
+// A quick Halloween-colored confetti burst on a full-screen canvas.
 
-const COLORS = ['#c084fc', '#a855f7', '#e879f9', '#f0abfc', '#ffd166', '#7e22ce', '#ffffff'];
+const COLORS = ['#ff922b', '#ffa94d', '#a855f7', '#c084fc', '#8ce99a', '#ffffff', '#e8590c'];
 
 export function confetti(canvas, { count = 220, duration = 4200 } = {}) {
   const ctx = canvas.getContext('2d');

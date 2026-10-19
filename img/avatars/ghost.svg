@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs><clipPath id="c"><circle cx="50" cy="50" r="50"/></clipPath>
+    <radialGradient id="g" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#5a3fa0"/><stop offset="1" stop-color="#22134a"/></radialGradient></defs>
+  <g clip-path="url(#c)">
+    <rect width="100" height="100" fill="url(#g)"/>
+    <circle cx="16" cy="22" r="1.6" fill="#fff"/><circle cx="84" cy="30" r="1.2" fill="#fff"/><circle cx="78" cy="78" r="1.4" fill="#fff"/>
+    <!-- ghost body -->
+    <path d="M24 92 L24 46 Q24 16 50 16 Q76 16 76 46 L76 92 Q70 86 64 92 Q58 98 52 92 Q46 86 40 92 Q34 98 30 92 Q27 89 24 92 Z" fill="#fbf8ff"/>
+    <path d="M70 30 Q76 40 76 52 L76 92 Q73 89 70 90 Z" fill="#ddd3f5"/>
+    <!-- little arms -->
+    <path d="M24 56 Q14 58 12 50 Q20 52 24 50 Z M76 56 Q86 58 88 50 Q80 52 76 50 Z" fill="#fbf8ff"/>
+    <!-- face -->
+    <ellipse cx="40" cy="46" rx="6" ry="8.5" fill="#1d1233"/><ellipse cx="60" cy="46" rx="6" ry="8.5" fill="#1d1233"/>
+    <circle cx="42" cy="43" r="2" fill="#fff"/><circle cx="62" cy="43" r="2" fill="#fff"/>
+    <ellipse cx="50" cy="64" rx="6" ry="7.5" fill="#1d1233"/>
+    <ellipse cx="50" cy="67" rx="3.5" ry="3" fill="#ff7aa2"/>
+    <ellipse cx="31" cy="57" rx="4.5" ry="2.6" fill="#ff9fc0" opacity=".8"/><ellipse cx="69" cy="57" rx="4.5" ry="2.6" fill="#ff9fc0" opacity=".8"/>
+  </g>
+</svg>
