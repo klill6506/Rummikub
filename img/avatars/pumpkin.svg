@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs><clipPath id="c"><circle cx="50" cy="50" r="50"/></clipPath>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff59d"/><stop offset="1" stop-color="#ffb300"/></radialGradient></defs>
+  <g clip-path="url(#c)">
+    <rect width="100" height="100" fill="#2a1747"/>
+    <circle cx="18" cy="18" r="1.5" fill="#fff"/><circle cx="86" cy="24" r="1.2" fill="#fff"/>
+    <!-- stem + vine -->
+    <path d="M46 26 Q44 14 52 10 L56 13 Q50 18 53 27 Z" fill="#4e7d2b"/>
+    <path d="M55 20 Q66 10 72 18 Q66 16 62 22" stroke="#6aa33a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <!-- pumpkin lobes -->
+    <ellipse cx="30" cy="58" rx="20" ry="30" fill="#f2711c"/>
+    <ellipse cx="70" cy="58" rx="20" ry="30" fill="#f2711c"/>
+    <ellipse cx="50" cy="58" rx="22" ry="32" fill="#ff8a2a"/>
+    <path d="M36 32 Q28 58 36 86 M64 32 Q72 58 64 86" stroke="#d45a10" stroke-width="2.2" fill="none"/>
+    <path d="M18 40 Q12 58 18 78 M82 40 Q88 58 82 78" stroke="#d45a10" stroke-width="2" fill="none" opacity=".7"/>
+    <!-- carved face with candle glow -->
+    <path d="M30 52 L40 40 L46 54 Z M70 52 L60 40 L54 54 Z" fill="url(#glow)" stroke="#7a2e00" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M47 58 L50 52 L53 58 Z" fill="url(#glow)" stroke="#7a2e00" stroke-width="1.2"/>
+    <path d="M26 64 Q50 86 74 64 L68 66 L64 72 L58 68 L54 76 L48 70 L42 76 L38 68 L32 72 Z" fill="url(#glow)" stroke="#7a2e00" stroke-width="1.5" stroke-linejoin="round"/>
+  </g>
+</svg>
